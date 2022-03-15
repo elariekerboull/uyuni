@@ -1346,3 +1346,8 @@ When(/^I enter the reactivation key of "([^"]*)"$/) do |host|
   log "Reactivation Key: #{react_key}"
   step %(I enter "#{react_key}" as "reactivationKey")
 end
+
+When(/^I generate the configuration "([^"]*)" of containerized proxy on the server$/) do |file_path|
+  command = "spacecmd proxy_container_config -o #{file_path} #{$proxy.full_hostname} #{$server.full_hostname} 2048 galaxy-noise@suse.de /root/ssl-build/RHN-ORG-TRUSTED-SSL-CERT /root/ssl-build/proxy/server.crt /root/ssl-build/proxy/server.key"
+  $server.run(command, check_errors: false)
+end

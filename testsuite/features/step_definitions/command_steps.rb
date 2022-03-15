@@ -614,6 +614,11 @@ Then(/^I should see "(.*?)" in the output$/) do |arg1|
   raise "Command Output #{@command_output} don't include #{arg1}" unless @command_output.include? arg1
 end
 
+When(/^I (start|stop) "([^"]*)" service on "([^"]*)"$/) do |action, service, host|
+  node = get_target(host)
+  node.run("systemctl #{action} #{service}", check_errors: false)
+end
+
 Then(/^service "([^"]*)" is enabled on "([^"]*)"$/) do |service, host|
   node = get_target(host)
   output, _code = node.run("systemctl is-enabled '#{service}'", check_errors: false)
@@ -1007,6 +1012,15 @@ end
 
 When(/^I open avahi port on the proxy$/) do
   $proxy.run('firewall-offline-cmd --zone=public --add-service=mdns')
+end
+
+When(/^I copy "([^"]*)" file from "([^"]*)" to "([^"]*)"$/) do |file_path, from_host, to_host|
+  from_node = get_target(from_host)
+  to_node = get_target(to_host)
+  return_code = file_extract(from_node, file_path)
+  raise 'File extraction failed' unless return_code.zero?
+  return_code = file_inject(to_node, file_path)
+  raise 'File injection failed' unless return_code.zero?
 end
 
 When(/^I copy server\'s keys to the proxy$/) do
@@ -1564,8 +1578,9 @@ Then(/^export folder "(.*?)" shouldn't exist on server$/) do |folder|
   raise "Folder exists" if folder_exists?($server, folder)
 end
 
-When(/^I ensure folder "(.*?)" doesn't exist$/) do |folder|
-  folder_delete($server, folder) if folder_exists?($server, folder)
+When(/^I ensure folder "(.*?)" doesn't exist on "(.*?)"$/) do |folder, host|
+  node = get_target(host)
+  folder_delete($server, folder) if folder_exists?(node, folder)
 end
 
 When(/^I regenerate the boot RAM disk on "([^"]*)" if necessary$/) do |host|
@@ -1575,4 +1590,12 @@ When(/^I regenerate the boot RAM disk on "([^"]*)" if necessary$/) do |host|
   if os_family =~ /^sles/ && os_version =~ /^11/
     node.run('mkinitrd')
   end
+end
+
+When(/^I set "([^"]*)" as SSH port on the proxy host$/) do |port|
+  $proxy.run("sed -i.bak -Ee 's/^#?Port\s+[0-9]*$/Port #{port}/g;' /etc/ssh/sshd_config")
+  $proxy.set_ssh_port(port)
+  $proxy.run('systemctl restart sshd')
+  # Note: We must re-init twopence node as we changed ssh port
+  $proxy = twopence_init("ssh:#{ENV['PROXY']}:#{port}")
 end
