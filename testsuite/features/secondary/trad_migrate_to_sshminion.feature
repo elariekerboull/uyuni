@@ -68,13 +68,13 @@ Feature: Migrate a traditional client into a Salt SSH minion
 
   Scenario: Check that channels are still the same after migration to Salt SSH
     Given I am on the Systems overview page of this "sle_client"
-    Then I should see a "Test-Channel-x86_64" text
+    Then I should see a "SLE-Product-SLES15-SP4-Pool for x86_64" text
 
   Scenario: Check that events history is still the same after migration to Salt SSH
     Given I am on the Systems overview page of this "sle_client"
     When I follow "Events" in the content area
     And I follow "History" in the content area
-    Then I should see a "subscribed to channel test-channel-x86_64" text
+    Then I should see a "subscribed to channel sle-product-sles15-sp4-pool-x86_64" text
 
   Scenario: Install a package to the migrated SSH minion
     Given I am on the Systems overview page of this "sle_client"

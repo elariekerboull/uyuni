@@ -18,6 +18,8 @@ Feature: Lock packages on traditional client
   Scenario: Lock a package on the client
     When I follow "Software" in the content area
     And I follow "Lock / Unlock"
+    And I enter "hoag-dummy-1.1-1.1" as the filtered package name
+    And I click on the filter button
     And I check row with "hoag-dummy-1.1-1.1" and arch of "sle_client"
     And I click on "Lock"
     And I run "rhn_check -vvv" on "sle_client"
@@ -31,6 +33,8 @@ Feature: Lock packages on traditional client
     And I follow "Lock / Unlock"
     And package "hoag-dummy-1.1-1.1" is reported as locked
     And I follow "Install"
+    And I enter "hoag-dummy-1.1-1.1" as the filtered package name
+    And I click on the filter button
     And I check row with "hoag-dummy-1.1-1.1" and arch of "sle_client"
     And I click on "Install Selected Packages"
     And I click on "Confirm"
@@ -47,6 +51,8 @@ Feature: Lock packages on traditional client
     When I follow "Software" in the content area
     And I follow "Lock / Unlock"
     And package "hoag-dummy-1.1-1.1" is reported as locked
+    And I enter "hoag-dummy-1.1-1.1" as the filtered package name
+    And I click on the filter button
     And I check row with "hoag-dummy-1.1-1.1" and arch of "sle_client"
     And I click on "Unlock"
     And I run "rhn_check -vvv" on "sle_client"
@@ -58,6 +64,8 @@ Feature: Lock packages on traditional client
   Scenario: Schedule a package lock
     When I follow "Software" in the content area
     And I follow "Lock / Unlock"
+    And I enter "hoag-dummy-1.1-1.1" as the filtered package name
+    And I click on the filter button
     And I check row with "hoag-dummy-1.1-1.1" and arch of "sle_client"
     And I click on "Lock"
     Then I should see a "Packages has been requested for being locked." text
@@ -68,6 +76,8 @@ Feature: Lock packages on traditional client
     And I follow "Lock / Unlock"
     And package "hoag-dummy-1.1-1.1" is reported as pending to be locked
     And package "hoag-dummy-1.1-1.1" cannot be selected
+    And I enter "milkyway-dummy-2.0-1.1" as the filtered package name
+    And I click on the filter button
     When I check row with "milkyway-dummy-2.0-1.1" and arch of "sle_client"
     And I click on "Lock"
     Then I should see a "Packages has been requested for being locked." text
@@ -88,6 +98,8 @@ Feature: Lock packages on traditional client
     And I follow "Lock / Unlock"
     And package "hoag-dummy-1.1-1.1" is reported as locked
     And package "milkyway-dummy-2.0-1.1" is reported as locked
+    And I enter "orion-dummy-1.1-1.1" as the filtered package name
+    And I click on the filter button
     When I check row with "orion-dummy-1.1-1.1" and arch of "sle_client"
     And I click on "Lock"
     Then I should see a "Packages has been requested for being locked." text
@@ -95,7 +107,11 @@ Feature: Lock packages on traditional client
     Then package "hoag-dummy-1.1-1.1" is reported as locked
     And package "milkyway-dummy-2.0-1.1" is reported as locked
     And package "orion-dummy-1.1-1.1" is reported as pending to be locked
+    And I enter "milkyway-dummy-2.0-1.1" as the filtered package name
+    And I click on the filter button
     When I check row with "milkyway-dummy-2.0-1.1" and arch of "sle_client"
+    And I enter "hoag-dummy-1.1-1.1" as the filtered package name
+    And I click on the filter button
     And I uncheck row with "hoag-dummy-1.1-1.1" and arch of "sle_client"
     And I click on "Unlock"
     Then I should see a "Packages has been requested for being unlocked." text
