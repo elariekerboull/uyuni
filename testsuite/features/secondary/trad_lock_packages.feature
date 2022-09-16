@@ -59,6 +59,8 @@ Feature: Lock packages on traditional client
     Then I should see a "Packages has been requested for being unlocked." text
     And "hoag-dummy-1.1-1.1" is unlocked on "sle_client"
     When I follow "Lock"
+    And I enter "hoag-dummy-1.1-1.1" as the filtered package name
+    And I click on the filter button
     Then package "hoag-dummy-1.1-1.1" is reported as unlocked
 
   Scenario: Schedule a package lock
