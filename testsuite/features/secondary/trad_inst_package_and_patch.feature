@@ -26,7 +26,8 @@ Feature: Install a package to the traditional client
     Then "virgo-dummy-2.0-1.1" should be installed on "sle_client"
 
   Scenario: Enable old packages for testing a patch install
-    When I install old package "andromeda-dummy-1.0" on this "sle_client"
+    When I enable repository "test_repo_rpm_pool" on this "sle_client"
+    And I install old package "andromeda-dummy-1.0" on this "sle_client"
     And I run "rhn_check -vvv" on "sle_client"
 
   Scenario: Schedule errata refresh after reverting to old package
@@ -55,4 +56,5 @@ Feature: Install a package to the traditional client
   Scenario: Cleanup: remove packages and restore non-update repo
     When I remove package "andromeda-dummy" from this "sle_client"
     And I remove package "virgo-dummy" from this "sle_client"
+    And I disable repository "test_repo_rpm_pool" on this "sle_client"
     And I run "rhn_check -vvv" on "sle_client"
