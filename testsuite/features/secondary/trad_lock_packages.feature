@@ -116,7 +116,6 @@ Feature: Lock packages on traditional client
     And I click on the filter button
     When I check row with "milkyway-dummy-2.0-1.1" and arch of "sle_client"
     And I click on "Unlock"
-    And I click on "Unlock"
     Then I should see a "Packages has been requested for being unlocked." text
     When I follow "Lock / Unlock"
     Then package "hoag-dummy-1.1-1.1" is reported as locked
