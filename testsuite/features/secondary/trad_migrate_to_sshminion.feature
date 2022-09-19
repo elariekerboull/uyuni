@@ -27,6 +27,9 @@ Feature: Migrate a traditional client into a Salt SSH minion
   Scenario: Change contact method of activation key to ssh-push
     When I follow the left menu "Systems > Activation Keys"
     And I follow "SUSE Test Key x86_64" in the content area
+    And I include the recommended child channels
+    And I check "SLE-Module-DevTools15-SP4-Pool for x86_64"
+    And I check "SLE-Custom-Channel-x86_64"
     And I select "Push via SSH" from "contactMethodId"
     And I click on "Update Activation Key"
     Then I should see a "Activation key SUSE Test Key x86_64 has been modified" text
@@ -128,6 +131,9 @@ Feature: Migrate a traditional client into a Salt SSH minion
   Scenario: Cleanup: change contact method of activation key back to default
     When I follow the left menu "Systems > Activation Keys"
     And I follow "SUSE Test Key x86_64" in the content area
+    And I include the recommended child channels
+    And I check "SLE-Module-DevTools15-SP4-Pool for x86_64"
+    And I check "SLE-Custom-Channel-x86_64"
     And I select "Default" from "contactMethodId"
     And I click on "Update Activation Key"
     Then I should see a "Activation key SUSE Test Key x86_64 has been modified" text
