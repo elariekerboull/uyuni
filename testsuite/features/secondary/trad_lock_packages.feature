@@ -127,8 +127,10 @@ Feature: Lock packages on traditional client
     And "orion-dummy-1.1-1.1" is locked on "sle_client"
     When I follow "Lock / Unlock"
     Then package "hoag-dummy-1.1-1.1" is reported as locked
-    And package "milkyway-dummy-2.0-1.1" is reported as unlocked
     And package "orion-dummy-1.1-1.1" is reported as locked
+    And I enter "milkyway-dummy-2.0-1.1" as the filtered package name
+    And I click on the filter button
+    And package "milkyway-dummy-2.0-1.1" is reported as unlocked
 
   Scenario: Mix package locks and unlock events part 2
     And I follow "Software" in the content area
@@ -140,7 +142,11 @@ Feature: Lock packages on traditional client
     Then only packages "hoag-dummy-1.1-1.1, orion-dummy-1.1-1.1" are reported as pending to be unlocked
     When I run "rhn_check -vvv" on "sle_client"
     And I follow "Lock / Unlock"
+    And I enter "hoag-dummy-1.1-1.1" as the filtered package name
+    And I click on the filter button
     Then package "hoag-dummy-1.1-1.1" is reported as unlocked
+    And I enter "orion-dummy-1.1-1.1" as the filtered package name
+    And I click on the filter button
     And package "orion-dummy-1.1-1.1" is reported as unlocked
 
   Scenario: Cleanup: remove packages after testing locks

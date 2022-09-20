@@ -138,7 +138,7 @@ Feature: Action chain on traditional clients
     And I follow "new action chain"
     Then I should see a "1. Install or update virgo-dummy on 1 system" text
     And I should see a "2. Run a remote command on 1 system" text
-    And I should see a "3. Apply patch(es) andromeda-dummy-6789 on 1 system" text
+    And I should see a "3. Apply patch(es) CL-andromeda-dummy-6789 on 1 system" text
     And I should see a "4. Remove milkyway-dummy from 1 system" text
     And I should see a "5. Verify andromeda-dummy on 1 system" text
     And I should see a text like "6. Deploy.*/etc/action-chain.cnf.*to 1 system"
