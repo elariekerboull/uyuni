@@ -398,35 +398,27 @@ end
 Then(/^I should have '([^']*)' in the metadata for "([^"]*)"$/) do |text, host|
   raise 'Invalid target.' unless host == 'sle_client'
   target = $client
-  arch, _code = target.run('uname -m')
-  arch.chomp!
-  cmd = "zgrep '#{text}' #{client_raw_repodata_dir("test-channel-#{arch}")}/*primary.xml.gz"
+  cmd = "zgrep '#{text}' #{client_raw_repodata_dir("susemanager:test-channel-for-sle")}/*primary.xml.gz"
   target.run(cmd, timeout: 500)
 end
 
 Then(/^I should not have '([^']*)' in the metadata for "([^"]*)"$/) do |text, host|
   raise 'Invalid target.' unless host == 'sle_client'
   target = $client
-  arch, _code = target.run('uname -m')
-  arch.chomp!
-  cmd = "zgrep '#{text}' #{client_raw_repodata_dir("test-channel-#{arch}")}/*primary.xml.gz"
+  cmd = "zgrep '#{text}' #{client_raw_repodata_dir("susemanager:test-channel-for-sle")}/*primary.xml.gz"
   target.run(cmd, timeout: 500)
 end
 
 Then(/^"([^"]*)" should exist in the metadata for "([^"]*)"$/) do |file, host|
   raise 'Invalid target.' unless host == 'sle_client'
   node = $client
-  arch, _code = node.run('uname -m')
-  arch.chomp!
-  dir_file = client_raw_repodata_dir("test-channel-#{arch}")
+  dir_file = client_raw_repodata_dir("susemanager:test-channel-for-sle")
   _out, code = node.run("ls -1 #{dir_file}/*#{file} 2>/dev/null")
   raise "File #{dir_file}/*#{file} not exist" unless _out.lines.count >= 1
 end
 
 Then(/^I should have '([^']*)' in the patch metadata$/) do |text|
-  arch, _code = $client.run('uname -m')
-  arch.chomp!
-  cmd = "zgrep '#{text}' #{client_raw_repodata_dir("test-channel-#{arch}")}/*updateinfo.xml.gz"
+  cmd = "zgrep '#{text}' #{client_raw_repodata_dir("susemanager:test-channel-for-sle")}/*updateinfo.xml.gz"
   $client.run(cmd, timeout: 500)
 end
 
