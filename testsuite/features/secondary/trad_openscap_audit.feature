@@ -9,7 +9,8 @@ Feature: OpenSCAP audit of traditional client
   I want to run an OpenSCAP scan on it
 
   Scenario: Install the OpenSCAP packages on the traditional client
-    When I refresh the metadata for "sle_client"
+    When I enable client tools repositories on "sle_client"
+    And I refresh the metadata for "sle_client"
     And I install OpenSCAP dependencies on "sle_client"
 
   Scenario: Log in as admin user
