@@ -17,7 +17,7 @@ Feature: Channel subscription via SSM
     And I follow "channel memberships" in the content area
     Then I should see a "Base Channel" text
     And I should see a "Next" text
-    When I select "Test Base Channel" from drop-down in table line with "Test-Channel-x86_64"
+    When I select "Test Base Channel" from drop-down in table line with "SLE-Product-SLES15-SP4-Pool for x86_64"
     And I click on "Next"
     Then I should see a "Child Channels" text
     And I should see a "Test Base Channel" text
@@ -82,13 +82,13 @@ Feature: Channel subscription via SSM
 @sle_minion
   Scenario: Check old channels are still enabled on SLES minion before channel change completes
     When I refresh the metadata for "sle_minion"
-    Then "1" channels should be enabled on "sle_minion"
+    Then "11" channels should be enabled on "sle_minion"
     And channel "SLE-Product-SLES15-SP4-Pool for x86_64" should be enabled on "sle_minion"
 
 @sle_client
   Scenario: Check old channels are still enabled on SLES client before channel change completes
     When I refresh the metadata for "sle_client"
-    Then "1" channels with prefix "spacewalk:" should be enabled on "sle_client"
+    Then "11" channels with prefix "spacewalk:" should be enabled on "sle_client"
     And channel "SLE-Product-SLES15-SP4-Pool for x86_64" should be enabled on "sle_client"
 
   Scenario: Wait 3 minutes for the scheduled action to be executed
@@ -129,14 +129,14 @@ Feature: Channel subscription via SSM
 @sle_minion
   Scenario: Check the new channels are enabled on the SLES minion
     When I refresh the metadata for "sle_minion"
-    Then "2" channels should be enabled on "sle_minion"
+    Then "12" channels should be enabled on "sle_minion"
     And channel "Test Base Channel" should be enabled on "sle_minion"
     And channel "Test Child Channel" should be enabled on "sle_minion"
 
 @sle_client
   Scenario: Check the new channels are enabled on the SLES client
     When I refresh the metadata for "sle_client"
-    Then "2" channels with prefix "spacewalk:" should be enabled on "sle_client"
+    Then "12" channels with prefix "spacewalk:" should be enabled on "sle_client"
     And channel "Test Base Channel" should be enabled on "sle_client"
     And channel "Test Child Channel" should be enabled on "sle_client"
 
@@ -237,7 +237,8 @@ Feature: Channel subscription via SSM
     And I wait until I see "SLE15-SP4-Installer-Updates for x86_64 " text
     And I include the recommended child channels
     And I check "SLE-Module-DevTools15-SP4-Pool for x86_64"
-    And I check "SLE-Custom-Channel-x86_64"    And I click on "Next"
+    And I check "SLE-Custom-Channel-x86_64"
+    And I click on "Next"
     Then I should see a "Confirm Software Channel Change" text
     When I click on "Confirm"
     Then I should see a "Changing the channels has been scheduled." text

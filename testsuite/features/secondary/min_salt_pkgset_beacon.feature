@@ -5,7 +5,8 @@
 Feature: System package list is updated if packages are manually installed or removed
 
   Scenario: Pre-requisite: install milkyway-dummy-1.0 package
-    When I run "zypper -n ref" on "sle_minion"
+    When I enable repository "test_repo_rpm_pool" on this "sle_minion"
+    And I run "zypper -n ref" on "sle_minion"
     And I install old package "milkyway-dummy-1.0" on this "sle_minion" without error control
 
   Scenario: Pre-requisite: refresh package list and check installed packages on SLE minion client

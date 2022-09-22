@@ -5,7 +5,8 @@
 Feature: Install a patch on the client via Salt through the UI
 
   Scenario: Pre-requisite: install virgo-dummy-1.0 package on SLE minion
-    When I run "zypper -n ref" on "sle_minion"
+    When I enable repository "test_repo_rpm_pool" on this "sle_minion"
+    And I run "zypper -n ref" on "sle_minion"
     And I install old package "virgo-dummy-1.0" on this "sle_minion" without error control
 
   Scenario: Pre-requisite: refresh package list and check old packages installed on SLE minion
