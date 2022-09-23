@@ -129,14 +129,14 @@ Feature: Channel subscription via SSM
 @sle_minion
   Scenario: Check the new channels are enabled on the SLES minion
     When I refresh the metadata for "sle_minion"
-    Then "12" channels should be enabled on "sle_minion"
+    Then "2" channels should be enabled on "sle_minion"
     And channel "Test Base Channel" should be enabled on "sle_minion"
     And channel "Test Child Channel" should be enabled on "sle_minion"
 
 @sle_client
   Scenario: Check the new channels are enabled on the SLES client
     When I refresh the metadata for "sle_client"
-    Then "12" channels with prefix "spacewalk:" should be enabled on "sle_client"
+    Then "2" channels with prefix "spacewalk:" should be enabled on "sle_client"
     And channel "Test Base Channel" should be enabled on "sle_client"
     And channel "Test Child Channel" should be enabled on "sle_client"
 
@@ -234,7 +234,7 @@ Feature: Channel subscription via SSM
     And I include the recommended child channels
     And I check "SLE-Module-DevTools15-SP4-Pool for x86_64"
     And I check "SLE-Custom-Channel-x86_64"
-    And I wait until I see "SLE15-SP4-Installer-Updates for x86_64 " text
+    And I wait until I see "SLE15-SP4-Installer-Updates for x86_64" text
     And I include the recommended child channels
     And I check "SLE-Module-DevTools15-SP4-Pool for x86_64"
     And I check "SLE-Custom-Channel-x86_64"
@@ -244,7 +244,7 @@ Feature: Channel subscription via SSM
     Then I should see a "Changing the channels has been scheduled." text
     When I follow "scheduled" in the content area
     And I wait until I see "1 system successfully completed this action." text, refreshing the page
-    Then channel "SLE15-SP4-Installer-Updates for x86_64 " should not be enabled on "sle_client"
+    Then channel "SLE15-SP4-Installer-Updates for x86_64" should not be enabled on "sle_client"
 
   Scenario: Cleanup: remove remaining systems from SSM after channel subscription tests
     When I follow "Clear"

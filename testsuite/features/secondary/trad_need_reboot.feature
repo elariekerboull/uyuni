@@ -37,7 +37,7 @@ Feature: Reboot required after patch
     Given I am on the Systems overview page of this "sle_client"
     When I follow "Software" in the content area
     And I follow "Patches" in the content area
-    And I check "andromeda-dummy-6789" in the list
+    And I check "CL-andromeda-dummy-6789" in the list
     And I click on "Apply Patches"
     And I click on "Confirm"
     And I run "rhn_check -vvv" on "sle_client"

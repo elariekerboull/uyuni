@@ -44,7 +44,7 @@ Feature: Install a package to the traditional client
     Given I am on the Systems overview page of this "sle_client"
     When I follow "Software" in the content area
     And I follow "Patches" in the content area
-    And I check "andromeda-dummy-6789" in the list
+    And I check "CL-andromeda-dummy-6789" in the list
     And I check "allowVendorChange"
     And I click on "Apply Patches"
     And I click on "Confirm"

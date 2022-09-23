@@ -64,3 +64,4 @@ Feature: OpenSCAP audit of traditional client
 
   Scenario: Cleanup: remove the OpenSCAP packages from the traditional client
     When I remove OpenSCAP dependencies from "sle_client"
+    And I disable client tools repositories on "sle_client"

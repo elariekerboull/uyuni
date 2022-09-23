@@ -43,6 +43,7 @@ Feature: Install a patch on the client via Salt through the UI
     And vendor change should be enabled for package actions on "sle_minion"
 
   Scenario: Cleanup: remove virgo-dummy package from SLE minion
+    When I disable repository "test_repo_rpm_pool" on this "sle_minion"
     When I remove package "virgo-dummy" from this "sle_minion" without error control
     And I run "zypper -n ref" on "sle_minion"
     And I refresh packages list via spacecmd on "sle_minion"

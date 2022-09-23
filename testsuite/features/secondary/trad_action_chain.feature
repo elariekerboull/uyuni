@@ -59,7 +59,7 @@ Feature: Action chain on traditional clients
   Scenario: Add a patch installation to the action chain on traditional client
     When I follow "Software" in the content area
     And I follow "Patches" in the content area
-    And I check "andromeda-dummy-6789" in the list
+    And I check "CL-andromeda-dummy-6789" in the list
     And I click on "Apply Patches"
     And I check radio button "schedule-by-action-chain"
     And I click on "Confirm"

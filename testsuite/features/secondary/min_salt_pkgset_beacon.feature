@@ -50,5 +50,6 @@ Feature: System package list is updated if packages are manually installed or re
     And I click on the filter button until page does not contain "milkyway-dummy" text
 
   Scenario: Cleanup: remove milkyway-dummy packages from SLES minion
-    When I remove package "milkyway-dummy" from this "sle_minion" without error control
+    When I disable repository "test_repo_rpm_pool" on this "sle_minion"
+    And I remove package "milkyway-dummy" from this "sle_minion" without error control
     And I run "zypper -n ref" on "sle_minion"
