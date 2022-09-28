@@ -30,7 +30,7 @@ Feature: Be able to register a Red Hat-like traditional client and do some basic
     And I refresh the packages list via package manager on "rhlike_client"
     And I install the traditional stack utils on "rhlike_client"
     And I install OpenSCAP dependencies on "rhlike_client"
-    And I register "rhlike_client" as traditional client
+    And I register "rhlike_client" as traditional client with activation key "1-SUSE-KEY-RH-LIKE"
     And I run "rhn-actions-control --enable-all" on "rhlike_client"
 
 @proxy
