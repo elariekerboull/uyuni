@@ -23,14 +23,6 @@ Feature: Negative tests for bootstrapping normal minions
     Then I should not see a "GenericSaltError" text
     And I should see a "seems to already exist, please check!" text
 
-  Scenario: Delete SLES minion system profile before bootstrap negative tests
-    Given I am on the Systems overview page of this "sle_minion"
-    When I follow "Delete System"
-    Then I should see a "Confirm System Profile Deletion" text
-    When I click on "Delete Profile"
-    And I wait until I see "has been deleted" text
-    Then "sle_minion" should not be registered
-
   Scenario: Bootstrap a SLES minion with wrong hostname
     When I follow the left menu "Systems > Bootstrapping"
     Then I should see a "Bootstrap Minions" text
@@ -50,7 +42,7 @@ Feature: Negative tests for bootstrapping normal minions
   Scenario: Bootstrap a SLES minion with wrong SSH credentials
     When I follow the left menu "Systems > Bootstrapping"
     Then I should see a "Bootstrap Minions" text
-    When I enter the hostname of "sle_minion" as "hostname"
+    When I enter the hostname of "localhost" as "hostname"
     And I enter "22" as "port"
     And I enter "FRANZ" as "user"
     And I enter "KAFKA" as "password"
@@ -66,7 +58,7 @@ Feature: Negative tests for bootstrapping normal minions
   Scenario: Bootstrap a SLES minion with wrong SSH port number
     When I follow the left menu "Systems > Bootstrapping"
     Then I should see a "Bootstrap Minions" text
-    When I enter the hostname of "sle_minion" as "hostname"
+    When I enter the hostname of "localhost" as "hostname"
     And I enter "11" as "port"
     And I enter "root" as "user"
     And I enter "linux" as "password"
