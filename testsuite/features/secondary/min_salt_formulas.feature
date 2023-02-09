@@ -58,13 +58,13 @@ Feature: Use salt formulas
      Then I should see the toggler "disabled"
      When I click on the "disabled" toggler
      And I click on "Apply Highstate"
-     Then I should see a "Applying the highstate has been scheduled." text
+     Then I should see a "Applying the highstate has been 'scheduled'." text
      And I wait at most 300 seconds until event "Apply highstate in test-mode scheduled" is completed
 
   Scenario: Apply the parametrized formula via the highstate
      And I follow "States" in the content area
      And I click on "Apply Highstate"
-     Then I should see a "Applying the highstate has been scheduled." text
+     Then I should see a "Applying the highstate has been 'scheduled'." text
      When I wait until event "Apply highstate scheduled by admin" is completed
      Then the timezone on "sle_minion" should be "+05"
      And the keymap on "sle_minion" should be "ca"
@@ -87,7 +87,7 @@ Feature: Use salt formulas
   Scenario: Apply the reset formula via the highstate
      And I follow "States" in the content area
      And I click on "Apply Highstate"
-     Then I should see a "Applying the highstate has been scheduled." text
+     Then I should see a "Applying the highstate has been 'scheduled'." text
      When I wait until event "Apply highstate scheduled by admin" is completed
      Then the timezone on "sle_minion" should be "CET"
      And the keymap on "sle_minion" should be "us"
@@ -154,7 +154,7 @@ Feature: Use salt formulas
      Given I am on the Systems overview page of this "sle_minion"
      And I follow "States" in the content area
      And I click on "Apply Highstate"
-     Then I should see a "Applying the highstate has been scheduled." text
+     Then I should see a "Applying the highstate has been 'scheduled'." text
      When I wait until event "Apply highstate scheduled by admin" is completed
      Then the timezone on "sle_minion" should be "CET"
      And the keymap on "sle_minion" should be "us"

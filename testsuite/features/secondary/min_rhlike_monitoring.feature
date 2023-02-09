@@ -41,7 +41,7 @@ Feature: Monitor SUMA environment with Prometheus on a Red Hat-like Salt minion
   Scenario: Apply highstate for Prometheus exporters on the Red Hat-like minion
     When I follow "States" in the content area
     And I click on "Apply Highstate"
-    Then I should see a "Applying the highstate has been scheduled." text
+    Then I should see a "Applying the highstate has been 'scheduled'." text
     And I wait until event "Apply highstate scheduled by admin" is completed
 
   Scenario: Visit monitoring endpoints on the Red Hat-like minion
@@ -61,7 +61,7 @@ Feature: Monitor SUMA environment with Prometheus on a Red Hat-like Salt minion
   Scenario: Cleanup: apply highstate after test monitoring on the Red Hat-like minion
     When I follow "States" in the content area
     And I click on "Apply Highstate"
-    Then I should see a "Applying the highstate has been scheduled." text
+    Then I should see a "Applying the highstate has been 'scheduled'." text
     And I wait until event "Apply highstate scheduled by admin" is completed
 
   Scenario: Cleanup: disable Prometheus exporters repository on the Red Hat-like minion

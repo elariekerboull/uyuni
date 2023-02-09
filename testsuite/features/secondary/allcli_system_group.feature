@@ -79,7 +79,7 @@ Feature: Manage a group of systems
     When I follow "new-systems-group"
     And I follow "States"
     And I click on "Apply Highstate"
-    Then I should see a "Applying the highstate has been scheduled." text
+    Then I should see a "Applying the highstate has been 'scheduled'." text
     When I follow "scheduled"
     Then I should see a "Apply states (highstate)" text
     And I should see a "Action Details" text
